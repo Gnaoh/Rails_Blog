@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
 	belongs_to :users
 
-	validates :title, :artcile, presence: true
+	validates :title, :content, presence: true
 
 
 end
