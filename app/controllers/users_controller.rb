@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in?, only: [:show, :edit, :destroy]
 
   def index
     @users = User.all

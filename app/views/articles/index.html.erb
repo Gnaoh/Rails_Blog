@@ -7,5 +7,6 @@
 <div> <% @articles.each do |article| %>
 	<h3> Title: <%= article.title %></h3>
 	<p> <%= article.content %></p>
-	<% end %>
+<%= button_to "Delete", article, method: :delete %>
+<% end %>
 </div>
