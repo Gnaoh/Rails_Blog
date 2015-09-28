@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+
   def index
   end
 
@@ -7,4 +8,5 @@ class SitesController < ApplicationController
 
   def contact
   end
+
 end

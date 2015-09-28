@@ -1,18 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :logged_in?, only: [:new, :edit, :destroy]
+  before_action :authorize, only: [:edit, :destory]
+
+
 
   def index
     @articles = Article.all
     current_user
 
-    render :index
   end
 
   def new
     @article = Article.new
     current_user
 
-    render :new
   end
 
   def create
@@ -24,15 +25,15 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    render :show
   end
 
   def edit
+    @user = current_user
     @article = Article.find(params[:id])
-    render :edit
   end
 
   def update
+    @user = current_user
     article_id = params[:id]
     article = Article.find(article_id)
 
@@ -43,6 +44,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     id = params[:id]
     article = Article.find(id)
     article.destroy
@@ -55,4 +57,13 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content)
   end
 
+ def authorize
+    @article = Article.find(params[:id])
+    unless @article.user_id == current_user.id 
+      flash[:notice] = "You are not the creator of this article, therefore you're not permitted to edit or destroy this article"
+      redirect_to root_path # or anything you prefer
+      return false # Important to let rails know that the controller should not be executed
+    end
+  end
+  
 end

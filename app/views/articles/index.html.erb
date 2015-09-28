@@ -1,6 +1,7 @@
 <h1> Welcome to Article Index.</h1>
 
 <div>
+	<%= link_to 'Create New Article', new_article_path %><br>
 	There are currently <%= @articles.length %> created. You can view them below:
 </div>
 
@@ -8,5 +9,9 @@
 	<h3> Title: <%= article.title %></h3>
 	<p> <%= article.content %></p>
 <%= button_to "Delete", article, method: :delete %>
+<button><%= link_to 'edit', "/articles/:id/edit" %></button>
+
+
 <% end %>
 </div>
+

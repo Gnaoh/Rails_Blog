@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
   #User Routes
- root to: 'users#index'
 
   get 'users', to: 'users#index', as: 'users' #use with _path
 
-  get 'users/new', to: 'users#new', as: 'new_user'
+  get 'sign_up', to: 'users#new', as: 'new_user'
 
   get 'users/create', to: 'users#create'
 
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
 
   post 'sessions', to: 'sessions#create'
 
- delete "sessions", to: "sessions#destroy"
+ delete 'sessions', to: "sessions#destroy"
 
 
   #Article Routes
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
 
 
   #Site Routes
-  get 'sites/index'
+  root to: 'sites#index'
 
   get 'sites/about'
 
